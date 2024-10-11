@@ -65,7 +65,7 @@ def main():
 
     host, port = sys.argv[1:3]
     
-    ip_port = (host, port)
+    ip_port = (host, (int)(port))
 
     s = socket.socket()
     s.connect(ip_port)

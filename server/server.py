@@ -67,7 +67,7 @@ def main():
 
     host, port = sys.argv[1:3]
     init_db()
-    ip_port = (host, port)
+    ip_port = (host, (int)(port))
     sk = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # socket.SOCK_STREAM is tcp
     sk.bind(ip_port)
     sk.listen(5)
