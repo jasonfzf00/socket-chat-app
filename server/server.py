@@ -25,22 +25,24 @@ def link_handler(link, client):
                 print(f'{user_id} disconnected')
                 break
             
-            # Show exisiting users
+            """List exisiting users"""
             if client_data =="ls":
                 keys = clients_list.keys()
                 client_list = ', '.join(keys)
                 client_list = 'User list: '+ client_list
                 link.sendall(client_list.encode())
+                
             
             if ":" in client_data:
                 recipient, msg = client_data.split(':', 1)
-                # Forward msg to specified user
+                """Forward message to a specific user"""
                 if recipient in clients_list:
                     recipient_socket = clients_list[recipient]
                     forward_message = f"{user_id} said: {msg}"
                     store_chat_history(user_id,recipient,msg)
                     recipient_socket.sendall(forward_message.encode())
-                # Get chat history with specified user
+                    
+                    """Retrieve chat histroy with a specific user from database"""
                 elif recipient == 'hs':
                     link.sendall(retrieve_chat_history(user_id,msg).encode())
                 else:
@@ -57,7 +59,7 @@ def link_handler(link, client):
             print(f'Client from [{client[0]}:{client[1]}] has disconnected.')
             link.close()
             break
-    # clients_list.pop(user_id) # remove from list when disconnected
+    clients_list.pop(user_id) # remove from list when disconnected
     link.close()
 
 def main():
