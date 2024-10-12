@@ -13,7 +13,7 @@ python client.py <host> <port>
 ```
 
 ## Client Commands
-- __Send Message to a Specific__
+- __Send Message to a Specific Client__
 Syntax: `recipientID:message`
 Example: `abc123:Hello!`
 
